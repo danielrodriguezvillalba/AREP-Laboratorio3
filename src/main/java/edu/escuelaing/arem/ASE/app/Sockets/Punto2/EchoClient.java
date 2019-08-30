@@ -1,4 +1,7 @@
+package edu.escuelaing.arem.ASE.app.Sockets.Punto2;
 
+
+import edu.escuelaing.arem.ASE.app.Sockets.Punto1.*;
 import java.io.*;
 import java.net.*;
 
@@ -25,10 +28,34 @@ public class EchoClient {
         BufferedReader stdIn = new BufferedReader(
                 new InputStreamReader(System.in));
         String userInput;
-
+        double numero;
+        String actual = "cos";
         while ((userInput = stdIn.readLine()) != null) {
-            out.println(userInput);
-            System.out.println("echo: " + in.readLine());
+            try{
+                numero = Double.parseDouble(userInput);
+                if (actual == "cos"){
+                    numero = Math.cos(numero);
+                }
+                else if(actual == "sin") {
+                    numero = Math.sin(numero);
+                }
+                else {
+                    numero = Math.tan(numero);
+                }
+                out.println("Resultado: "+numero);
+            }catch (NumberFormatException e){
+                if(userInput.contains("sin")){
+                    actual = "sin";
+                }
+                else if(userInput.contains("cos")){
+                    actual = "cos";
+                }
+                else if(userInput.contains("tan")){
+                    actual = "tan";
+                }
+                out.println("La operacion cambio por " + actual);
+            }
+            
         }
         out.close();
         in.close();

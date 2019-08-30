@@ -1,5 +1,7 @@
 package edu.escuelaing.arem.ASE.app;
 
+import edu.escuelaing.arem.ASE.app.Sockets.Punto1.EchoClient;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -9,7 +11,7 @@ import java.util.Scanner;
 public class App 
 {
     
-    public static void main( String[] args )
+    public static void main( String[] args ) throws IOException
     {
         String url;
         Aplicacion aplica = new Aplicacion();
@@ -18,5 +20,7 @@ public class App
         Scanner in = new Scanner(System.in);
         url = in.nextLine();
         aplica.lecturaUrl(url);
+        String[] s = new String[] {"a"};
+        EchoClient.main(s);
     }
 }
