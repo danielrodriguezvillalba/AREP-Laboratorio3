@@ -29,22 +29,23 @@ public class HttpServer {
                 new InputStreamReader(
                         clientSocket.getInputStream()));
         String inputLine, outputLine;
-
+        boolean flag = false;
         while ((inputLine = in.readLine()) != null) {
-            System.out.println("Received: " + inputLine);
+            if (inputLine.startsWith("GET")) {flag = true;}
+            else{flag = false;}
             if (!in.ready()) {
                 break;
             }
+        }
+        if(flag){
+            
         }
         outputLine = "<!DOCTYPE html>"
                 + "<html>"
                 + "<head>"
                 + "<meta charset=\"UTF-8\">"
-                + "<title>Title of the document</title>\n"
+                + "<title>Servidor</title>\n"
                 + "</head>"
-                + "<body>"
-                + "My Web Site"
-                + "</body>"
                 + "</html>" + inputLine;
         
         out.println(outputLine);
